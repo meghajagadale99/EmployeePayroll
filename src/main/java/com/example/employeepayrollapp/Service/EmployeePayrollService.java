@@ -43,5 +43,4 @@ public class EmployeePayrollService implements IEmployeePayrollService {
     public void deleteEmployeePayrollData(int employeeId) {
         employeePayrollList.remove(employeeId - 1);
     }
-
 }
