@@ -1,5 +1,6 @@
 package com.example.employeepayrollapp.Service;
 
+import com.example.employeepayrollapp.Exception.EmployeePayrollException;
 import com.example.employeepayrollapp.dto.EmployeePayrollDTO;
 import com.example.employeepayrollapp.model.EmployeePayrollData;
 import org.springframework.stereotype.Service;
@@ -19,7 +20,8 @@ public class EmployeePayrollService implements IEmployeePayrollService {
 
     @Override
     public EmployeePayrollData getEmployeePayrollDataById(int employeeId) {
-        return employeePayrollList.get(employeeId - 1);
+        return employeePayrollList.stream().filter(empData -> empData.getEmployeeId() == employeeId).findFirst()
+                .orElseThrow(() -> new EmployeePayrollException("Employee Not found"));
     }
 
     @Override
