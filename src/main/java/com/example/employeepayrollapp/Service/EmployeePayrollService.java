@@ -7,8 +7,14 @@ import com.example.employeepayrollapp.repository.EmployeePayrollRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
+/**
+ * Layer contains business logic,
+ * also implements all the method in controller layer
+ *
+ * @author Megha Jagadale
+ * @version 0.0.1
+ * @since 14/8/2022
+ */
 import java.util.List;
 
 @Service

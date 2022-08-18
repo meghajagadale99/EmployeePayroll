@@ -2,7 +2,13 @@ package com.example.employeepayrollapp.model;
 
 import com.example.employeepayrollapp.dto.EmployeePayrollDTO;
 import lombok.Data;
-
+/**
+ * Create and maintains employee payroll data in object.
+ *
+ * @author Megha Jagadale
+ * @version 0.0.1
+ * @since 14/8/2022
+ */
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;

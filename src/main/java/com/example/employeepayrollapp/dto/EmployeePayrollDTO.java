@@ -2,7 +2,13 @@ package com.example.employeepayrollapp.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.ToString;
-
+/**
+ * Receive data object from clint
+ *
+ * @author Megha Jagadale
+ * @version 0.0.1
+ * @since 14/8/2022
+ */
 import javax.validation.constraints.*;
 import java.time.LocalDate;
 import java.util.List;
