@@ -16,29 +16,28 @@ import java.util.stream.Collectors;
 @ControllerAdvice
 @Slf4j
 public class EmployeePayrollExceptionHandler {
-    private static final String message = "Exception While Processing REST Request";
+    private static final String message = "Exception While processing REST Request";
 
     @ExceptionHandler(HttpMessageNotReadableException.class)
-    public ResponseEntity<ResponseDTO> handelHttpMessageNotReadableException(
-            HttpMessageNotReadableException exception) {
-        log.error("Invalid Date Format", exception);
-        ResponseDTO respDTO = new ResponseDTO(message, "Should have date in dd MMM yyyy format");
-        return new ResponseEntity<ResponseDTO>(respDTO, HttpStatus.BAD_REQUEST);
+    public ResponseEntity<ResponseDTO> handleHttpMessageNotReadableException(HttpMessageNotReadableException exception) {
+        log.error("invalid date format", exception);
+        ResponseDTO responseDTO = new ResponseDTO(message, "Should have date in the format dd MM yyyy");
+        return new ResponseEntity<>(responseDTO, HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<ResponseDTO> handleMethodArgumentNotValidException(
-            MethodArgumentNotValidException exception) {
+    public ResponseEntity<ResponseDTO> handleMethodArgumentNotValidException(MethodArgumentNotValidException exception) {
         List<ObjectError> errorList = exception.getBindingResult().getAllErrors();
-        List<String> errMesg = errorList.stream().map(objErr -> objErr.getDefaultMessage())
+        List<String> errMesg = errorList.stream()
+                .map(objectError -> objectError.getDefaultMessage())
                 .collect(Collectors.toList());
-        ResponseDTO respDTO = new ResponseDTO("Exception While Processing REST Request", errMesg);
-        return new ResponseEntity<ResponseDTO>(respDTO, HttpStatus.BAD_REQUEST);
+        ResponseDTO responseDTO = new ResponseDTO(message, errMesg);
+        return new ResponseEntity<>(responseDTO, HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(EmployeePayrollException.class)
     public ResponseEntity<ResponseDTO> handleEmployeePayrollException(EmployeePayrollException exception) {
-        ResponseDTO respDTO = new ResponseDTO("Exception while REST Request", exception.getMessage());
-        return new ResponseEntity<ResponseDTO>(respDTO, HttpStatus.BAD_REQUEST);
+        ResponseDTO responseDTO = new ResponseDTO(message, exception.getMessage());
+        return new ResponseEntity<>(responseDTO, HttpStatus.BAD_REQUEST);
     }
 }

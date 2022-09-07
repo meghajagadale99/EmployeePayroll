@@ -49,7 +49,7 @@ public class EmployeePayrollController {
         EmployeePayrollData payrollData = null;
         payrollData = employeePayrollService.createEmployeePayrollData(employeePayrollDTO);
         ResponseDTO respDTO = new ResponseDTO("Created Employee payroll data for:", payrollData);
-        return new ResponseEntity<ResponseDTO>(respDTO, HttpStatus.OK);
+        return new ResponseEntity<>(respDTO, HttpStatus.OK);
     }
 
     @PutMapping("/update/{employeeId}")
@@ -58,14 +58,14 @@ public class EmployeePayrollController {
         EmployeePayrollData payrollData = null;
         payrollData = employeePayrollService.updateEmployeePayrollData(employeeId, employeePayrollDTO);
         ResponseDTO respDTO = new ResponseDTO("Updated Employee payroll Data for: ", payrollData);
-        return new ResponseEntity<ResponseDTO>(respDTO, HttpStatus.OK);
+        return new ResponseEntity<>(respDTO, HttpStatus.OK);
     }
 
     @DeleteMapping("/delete/{employeeId}")
     public ResponseEntity<ResponseDTO> deleteEmployeePayrollData(@PathVariable("employeeId") int employeeId) {
         employeePayrollService.deleteEmployeePayrollData(employeeId);
         ResponseDTO respDTO = new ResponseDTO("Delete Call Success for id: ", "employeeId " + employeeId);
-        return new ResponseEntity<ResponseDTO>(respDTO, HttpStatus.OK);
+        return new ResponseEntity<>(respDTO, HttpStatus.OK);
     }
 
     @GetMapping("/department/{department}")
