@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
  * @version 0.0.1
  * @since 14/8/2022
  */
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -61,4 +62,16 @@ public class EmployeePayrollService implements IEmployeePayrollService {
     public List<EmployeePayrollData> getEmployeesPayrollDataByDepartment(String departments) {
         return employeePayrollRepository.findEmployeesByDepartment(departments);
     }
+
+    @Override
+    public List<EmployeePayrollData> getEmployeeByName(String name) {
+        return employeePayrollRepository.getEmployeeByName(name);
+    }
+
+    @Override
+    public List<EmployeePayrollData> getEmployeeByGender(String gender) {
+        return employeePayrollRepository.getEmployeeByGender(gender);
+    }
+
 }
+

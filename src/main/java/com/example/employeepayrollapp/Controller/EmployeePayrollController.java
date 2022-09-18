@@ -11,7 +11,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.time.LocalDate;
 import java.util.List;
+
 /**
  * Receive various HTTP request from clint
  *
@@ -53,8 +55,8 @@ public class EmployeePayrollController {
     }
 
     @PutMapping("/update/{employeeId}")
-    public ResponseEntity<ResponseDTO> updateEmployeePayrollData(@Valid  @PathVariable(value = "employeeId") int employeeId,
-                                                                  @RequestBody EmployeePayrollDTO employeePayrollDTO) {
+    public ResponseEntity<ResponseDTO> updateEmployeePayrollData(@Valid @PathVariable(value = "employeeId") int employeeId,
+                                                                 @RequestBody EmployeePayrollDTO employeePayrollDTO) {
         EmployeePayrollData payrollData = null;
         payrollData = employeePayrollService.updateEmployeePayrollData(employeeId, employeePayrollDTO);
         ResponseDTO respDTO = new ResponseDTO("Updated Employee payroll Data for: ", payrollData);
@@ -76,4 +78,19 @@ public class EmployeePayrollController {
         ResponseDTO response = new ResponseDTO("Get Call for Department Successful", employeeList);
         return new ResponseEntity<ResponseDTO>(response, HttpStatus.OK);
     }
+
+    @GetMapping("/getEmployeeByName/{name}")
+    public ResponseEntity<ResponseDTO> getEmployeeByName(@PathVariable String name) {
+        List<EmployeePayrollData> employeeList = employeePayrollService.getEmployeeByName(name);
+        ResponseDTO responseDTO = new ResponseDTO("The Employee of name :" + name, employeeList);
+        return ResponseEntity.ok().body(responseDTO);
+    }
+
+    @GetMapping("/getEmployeeByGender")
+    public ResponseEntity<ResponseDTO> getEmployeeByGender(@Valid @RequestParam String gender) {
+        List<EmployeePayrollData> employeeList = employeePayrollService.getEmployeeByGender(gender);
+        ResponseDTO responseDTO = new ResponseDTO("The Employees who are :" + gender, employeeList);
+        return ResponseEntity.ok().body(responseDTO);
+    }
+
 }
