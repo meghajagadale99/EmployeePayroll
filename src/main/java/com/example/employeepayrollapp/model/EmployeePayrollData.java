@@ -36,6 +36,7 @@ public @Data class EmployeePayrollData {
     @ElementCollection
     @CollectionTable(name = "employee_department",
             joinColumns = @JoinColumn(name ="id"))
+
     @Column(name = "departments")
     private List<String> departments;
 

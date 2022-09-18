@@ -17,5 +17,4 @@ public class EmployeePayrollAppApplication {
         log.info("Employee Payroll DB User is {}",
                 context.getEnvironment().getProperty("spring.datasource.username"));
     }
-
 }
